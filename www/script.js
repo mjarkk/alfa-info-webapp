@@ -329,7 +329,8 @@ var timetable = "";
 
 gettimetable();
 function gettimetable() {
-  $.get('https://allorigins.pw/get?method=raw&url=' + encodeURIComponent(timetableurl) + '&callback=?', function(data){
+  var proxylink = settings.TimeTableProxy;
+  $.get(proxylink + timetableurl, function(data){
     timetable = data.replace(/(\r\n|\n|\r)/gm,"");
     rawhtmltojson();
   });
