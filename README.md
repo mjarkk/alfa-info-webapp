@@ -16,6 +16,35 @@ Also the app has a service worker built-in, a manifest to enable add to home scr
 
 ! for add to home screen and offline you need https
 
+to use the timetable you need to download & install: https://github.com/bmpvieira/simple-corsproxy
+if you have a https server you need to install inside of the simple-corsproxy folder:
+npm install https
+after that you need to change the index.js
+```
+// also change the /etc/letsencrypt/live/www.yourserver.com/*.pem to where your .pem is located.
+#!/usr/bin/env node
+var http = require('https')
+var request = require('request')
+var fs = require('fs')
+var port = process.env.PORT || 8080
+var options = {
+  key: fs.readFileSync('/etc/letsencrypt/live/www.yourserver.com/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/www.yourserver.com/fullchain.pem')
+}
+http.createServer(options, function (req, res) {
+  res.setTimeout(2500)
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  try {
+    request(req.url.slice(1), {encoding: null}, function(error, response, body) {
+      res.write(body)
+      res.end()
+    })
+  }
+  catch(e) {}
+}).listen(port)
+console.log("Listening on port: " + port)
+```
+
 my webserver (nginx) config:
 
 ```
