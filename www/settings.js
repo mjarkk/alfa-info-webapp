@@ -3,6 +3,7 @@ var settings = {
   //like this: "dirtosite": "/your-site/",
   "SiteDir": "/",
   "SiteTitle": "ICT-ALFA app",
+  "TimeTableProxy": "https://www.yourdomain.com:8080/",
   "RoosterServiceLink": "https://roosters.xedule.nl/Attendee/ScheduleCurrent/14488?Code=B-ITM3-2a&attId=1&OreId=34",
   "links": [
     {
