@@ -74,6 +74,13 @@ if (Lockr.get('ICT-ALFA-settings-url-' + window.location.hostname) == undefined)
   timetableurl = Lockr.get('ICT-ALFA-settings-url-' + window.location.hostname);
 }
 
+if (Lockr.get('ICT-ALFA-timetable-update-' + window.location.hostname) == undefined) {
+  Lockr.set('ICT-ALFA-timetable-update-' + window.location.hostname, 1);
+  timetableurl = timetableurl + "&updated=" + Lockr.get('ICT-ALFA-timetable-update-' + window.location.hostname);
+} else {
+  Lockr.set('ICT-ALFA-timetable-update-' + window.location.hostname, Lockr.get('ICT-ALFA-timetable-update-' + window.location.hostname) + 1);
+  timetableurl = timetableurl + "&updated=" + Lockr.get('ICT-ALFA-timetable-update-' + window.location.hostname);
+}
 console.log(timetableurl);
 
 function UpdateTimetable(state) {
@@ -329,11 +336,14 @@ var timetable = "";
 
 gettimetable();
 function gettimetable() {
+
   var proxylink = settings.TimeTableProxy;
+
   $.get(proxylink + timetableurl, function(data){
     timetable = data.replace(/(\r\n|\n|\r)/gm,"");
     rawhtmltojson();
   });
+
   function isNumber(n) { return /^-?[\d.]+(?:e-?\d+)?$/.test(n); };
   function rawhtmltojson() {
     if (timetable.search(/<div class="Les"/i) != -1) {
