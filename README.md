@@ -103,3 +103,6 @@ var sitedir = "/school/"
 if you have problems opening you'r site for the first time:
 press in your website ctrl + shift + i
 ![screenshot](http://i.imgur.com/wwSBQzN.png)
+
+## Bugs:
+- serviceworker doesn't delete rooster site. that means after 100+ times opening the site your cache is 10mb
