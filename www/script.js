@@ -63,6 +63,16 @@ var NowToday = weekday[d.getDay()];
 var NowHour = d.getHours();
 var NowMinut = d.getMinutes();
 
+var boxopensize = 650;
+if ($(window).width() < 650) {
+  if ($(window).height > 650) {
+    boxopensize = $(window).height();
+  }
+};
+var fabopensize = Math.sqrt(boxopensize*boxopensize+650*650);
+var calctimetable = boxopensize - 66;
+var onehoure = calctimetable / 9;
+
 UpdateTimetable("offline");
 
 var timetableurl = settings.RoosterServiceLink;
@@ -328,6 +338,7 @@ function setcurrentsubjects(when,subject,place,time,teacher) {
 function pushtotimetable(day, subject) {
   calcminuts = 100 / 60 * subject.time.MinutesStart;
   calcminutsend = onehoure / 60 * subject.time.MinutesEnd;
+  console.log(subject.time.MinutesEnd);
   subjectsize = calcminutsend + ((subject.time.HourseEnd - subject.time.HourseStart) * onehoure);
   $("." + day + " .h" + subject.time.HourseStart).html("<div style=\"top:" + calcminuts + "%; min-height:" + subjectsize + "px\" class='subject-item'><p class='a'>" + subject.subject + "</p><p class='b'>" + subject.place + "</p></div>");
 }
@@ -341,9 +352,13 @@ function gettimetable() {
 
   $.get(proxylink + timetableurl, function(data){
     timetable = data.replace(/(\r\n|\n|\r)/gm,"");
-    rawhtmltojson();
+    if (timetable == "" || timetable == undefined) {
+      console.log({timetable: false});
+    } else {
+      rawhtmltojson();
+      console.log({timetable: true});
+    }
   });
-
   function isNumber(n) { return /^-?[\d.]+(?:e-?\d+)?$/.test(n); };
   function rawhtmltojson() {
     if (timetable.search(/<div class="Les"/i) != -1) {
@@ -405,16 +420,6 @@ function gettimetable() {
     }
   }
 }
-
-var boxopensize = 650;
-if ($(window).width() < 650) {
-  if ($(window).height > 650) {
-    boxopensize = $(window).height();
-  }
-};
-var fabopensize = Math.sqrt(boxopensize*boxopensize+650*650);
-var calctimetable = boxopensize - 66;
-var onehoure = calctimetable / 9;
 
 $(".open-complete-timetable").click(function() {
   $(".day-houre").css("height",onehoure + "px")
