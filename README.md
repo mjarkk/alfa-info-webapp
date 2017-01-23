@@ -106,3 +106,4 @@ press in your website ctrl + shift + i
 
 ## Bugs:
 - serviceworker doesn't delete rooster site. that means after 100+ times opening the site your cache is 10mb
+- when offline the timetable isn't right
