@@ -222,7 +222,75 @@ i
               .friday
 
   .links
-
+    overflow: hidden
+    .opelinks-con
+      height: 1px
+    .openlinks
+      display: block
+      position: relative
+      right: -650px
+      background-color: white
+      overflow: auto
+      .title
+        font-size: 40px
+        padding: 10px
+        display: flex
+        justify-content: space-between
+        display: -webkit-flex
+        -webkit-justify-content: space-between
+        p
+          display: inline-block
+        i
+          display: inline-block
+          font-size: 40px
+          position: relative
+          top: 10px
+          cursor: pointer
+          -webkit-user-select: none
+          -moz-user-select: none
+          -ms-user-select: none
+          -o-user-select: none
+          user-select: none
+          color: #212121
+          transition: color 0.3s
+        i:hover
+          color: #BF360C
+      .links
+        padding: 10px
+        .link-item
+          padding: 15px 0px
+          display: inline-block
+          width: 100%
+          box-sizing: border-box
+          border-top: 2px solid #eee
+          *
+            color: black
+          h1
+            color: #000
+            font-size: 25px
+          p
+            color: #757575
+            font-size: 18px
+    .more-links
+      display: flex
+      display: -webkit-flex
+      flex-wrap: wrap
+      -webkit-flex-wrap: wrap
+      .item
+        padding: 10px 17px
+        margin: 5px
+        border-radius: 50px
+        display: block
+      .first
+      .link
+        -webkit-user-select: none
+        -moz-user-select: none
+        -ms-user-select: none
+        -o-user-select: none
+        user-select: none
+        background-color: #2196F3
+        cursor: pointer
+        color: #fff
     .link-items
       width: 100%
       .link-item
@@ -442,3 +510,13 @@ i
       color: #fff
     .note
       padding: 10px
+
+.credit
+  a
+    display: inline-block
+    width: 100%
+    text-align: center
+    padding: 20px 0px 0px 0px
+    font-size: 19px
+    color: rgb(138, 138, 138)
+    cursor: pointer

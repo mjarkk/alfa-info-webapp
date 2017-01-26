@@ -338,7 +338,7 @@ function setcurrentsubjects(when,subject,place,time,teacher) {
 function pushtotimetable(day, subject) {
   calcminuts = 100 / 60 * subject.time.MinutesStart;
   calcminutsend = onehoure / 60 * subject.time.MinutesEnd;
-  console.log(subject.time.MinutesEnd);
+  // console.log(subject.time.MinutesEnd);
   subjectsize = calcminutsend + ((subject.time.HourseEnd - subject.time.HourseStart) * onehoure);
   $("." + day + " .h" + subject.time.HourseStart).html("<div style=\"top:" + calcminuts + "%; min-height:" + subjectsize + "px\" class='subject-item'><p class='a'>" + subject.subject + "</p><p class='b'>" + subject.place + "</p></div>");
 }
@@ -661,8 +661,43 @@ function opentoast(toast) {
   }, 5000);
 }
 
-// function opensettings() {
-//   opentoast(".nosettings");
-// }
 
+var MoreLinks = "<div class=\"first item\">Meer:</div>"
+if (settings.morelinks.length == 0) {
+  MoreLinks = ""
+}
+for (var i = 0; i < settings.morelinks.length; i++) {
+  MoreLinks = MoreLinks + "<div class=\"link item a" + i + "\" onclick=\"openmorelinks(" + i + ")\">" + settings.morelinks[i].tabname + "</div>";
+}
+
+$(".links .more-links").html(MoreLinks);
+
+openmorelinks = function(data) {
+  var getdata = Number(data);
+  $(".openlinks .title").html("<p>" + settings.morelinks[getdata].tabname + "</p><i class=\"material-icons\" onclick=\"closemorelinks()\">close</i>");
+  var morelinksHTML = "";
+  for (var i = 0; i < settings.morelinks[getdata].links.length; i++) {
+    var JSONdata = settings.morelinks[getdata].links[i];
+    morelinksHTML = morelinksHTML + "<a class=\"link-item\" href=\"" + JSONdata.link + "\">" + "<h1>" + JSONdata.name + "</h1>" + "<p>" + JSONdata.description + "</p>" + "</a>";
+    $(".openlinks .links").html(morelinksHTML);
+  }
+  $('.openlinks').velocity({
+    right: "0px"
+  }, {
+    duration: 500,
+    easing: "easeOutCirc"});
+}
+
+closemorelinks = function() {
+  $('.openlinks').velocity({
+    right: "-650px"
+  }, {
+    duration: 500,
+    easing: "easeInQuint"});
+}
+
+// console.log($(".links").height() + 12 + "px");
+var HeightOpenMenu = $(".links").height() + 2;
+$('.openlinks').css("height", HeightOpenMenu + "px");
+$('.openlinks').css("top", "-" + HeightOpenMenu + "px");
 });
