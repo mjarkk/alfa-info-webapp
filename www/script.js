@@ -277,7 +277,7 @@ function UpdateTimetable(state) {
           $(".con .last .subject").html("Geen les!");
           $(".con .last .subject").addClass("nosubject");
           setcurrentsubjects(2,today[0].subject, today[0].place, today[0].time.TimeRaw, today[0].teacher);
-          if (0 < today.length) {
+          if (1 < today.length) {
             setcurrentsubjects(3,today[1].subject, today[1].place, today[1].time.TimeRaw, today[1].teacher);
             $(".con .next .subject").removeClass("nosubject");
           } else {
