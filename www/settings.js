@@ -28,7 +28,7 @@ var settings = {
       "name": "School Webmail",
       "icon": "email-icon.png",
       "description": "Hier kan je mensen vinden om mee te daten",
-      "link": "https://federation.alfa-college.nl/adfs/ls/?username=&wa=wsignin1.0&wtrealm=urn%3afederation%3aMicrosoftOnline&wctx=estsredirect%3d2%26estsrequest%3drQIIAbNSzygpKSi20tfPLy3Jyc_P1stPS8tMTjU2M9VLzs_Vyy9Kz0wBsaKYgQqKhLgE_mb-OFjUXO-xcMmET62peXtnMYoXl5SmpOaV6CXmpCXqJufn5KSmp-rl5axiVMJruH5-eaL-BUbGF4yMm5jYfZ0844ODfU4wXf7Mf4tJ0L8o3TMlvNgtNSW1KLEkMz_vERNvaHFqkX9eTmVIfnZq3iRmvpz89My8-OKitPi0nPxyoADQ0ILE5JL4kszk7NSSXcwqFomWJhbGKcm6hsYGxromBskpuhYGZga6yaYWicaJpiaJxhbJF1gEdnEGEXapfVFqYk6uLQ7PqiWWlmQEpaZkFqUml9iWFJWmAgA1"
+      "link": "https://login.microsoftonline.com/"
     }
   ],
   "morelinks": [
