@@ -350,7 +350,7 @@ function gettimetable() {
 
   var proxylink = settings.TimeTableProxy;
 
-  $.get(proxylink + timetableurl, function(data){
+  $.get(proxylink, {url: timetableurl}, function(data){
     timetable = data.replace(/(\r\n|\n|\r)/gm,"");
     if (timetable == "" || timetable == undefined) {
       console.log({timetable: false});
