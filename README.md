@@ -8,10 +8,13 @@ Also the app has a service worker built-in, a manifest to enable add to home scr
 ![screenshot](http://i.imgur.com/7ZhvQQE.png)
 
 ### Website made with:
-[xedule web api](https://github.com/mjarkk/smallprojects/tree/master/xeduleAPI)  
-[velocity.js](http://velocityjs.org/)  
-[jquery](https://jquery.com/)  
-[lockr](https://github.com/tsironis/lockr)
+[xedule web api for translating the html into a json](https://github.com/mjarkk/smallprojects/tree/master/xeduleAPI)  
+[velocity.js for all the animations](http://velocityjs.org/)  
+[jquery for the add elemets](https://jquery.com/)  
+[npm for the serverside request](https://www.npmjs.com/)
+[lockr for the offline saved data](https://github.com/tsironis/lockr)
+[letsencrypt for the https](https://letsencrypt.org/)
+[Service Worker for the offline site](https://developers.google.com/web/fundamentals/getting-started/primers/service-workers)
 ### how to install
 
 ! for add to home screen and offline you need https
