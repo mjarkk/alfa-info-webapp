@@ -3,7 +3,8 @@ var settings = {
   //like this: "dirtosite": "/your-site/",
   "SiteDir": "/",
   "SiteTitle": "ICT-ALFA app",
-  "TimeTableProxy": "https://www.yourwebproxy.com:8080/",
+  "webapi": true,
+  "TimeTableProxy": "https://school.mkopenga.com:5055", 
   "RoosterServiceLink": "https://roosters.xedule.nl/Attendee/ScheduleCurrent/14488?Code=B-ITM3-2a&attId=1&OreId=34",
   "links": [
     {
