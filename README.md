@@ -18,10 +18,10 @@ Also the app has a service worker built-in, a manifest to enable add to home scr
   
 ### how to install  
 
-! this web app requires https !
-1: download & configure: https://github.com/mjarkk/node-xedule-web-api
-2: Copy the content from www to you'r web server root.
-Dune!
+! this web app requires https !  
+1: download & configure: https://github.com/mjarkk/node-xedule-web-api  
+2: Copy the content from www to you'r web server root.  
+Dune!  
 
 ### Sub directory
 If you place it in a sub directory like www.yoursite.com/school there are some settings you need to change.
