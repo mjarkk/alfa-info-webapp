@@ -496,16 +496,11 @@ i
       width: 100%
     button
       cursor: pointer
-      margin: 10px
+      margin: 10px 0px 10px 10px
       display: inline-block
-      position: relative
-      width: 120px
-      height: 32px
-      line-height: 32px
+      padding: 6px 12px
       border-radius: 2px
-      font-size: 0.9em
-      background-color: #fff
-      color: #646464
+      font-size: 1em
       background-color: #4285f4
       color: #fff
     .note
@@ -520,3 +515,72 @@ i
     font-size: 19px
     color: rgb(138, 138, 138)
     cursor: pointer
+
+.select-timetable
+  height: 100vh
+  width: 100vw
+  position: fixed
+  top: 0px
+  left: 100vw
+  display: flex
+  justify-content: flex-start
+  align-items: flex-start
+  flex-direction: row
+  flex-wrap: nowrap
+  display: -webkit-flex
+  -webkit-justify-content: flex-start
+  -webkit-align-items: flex-start
+  -webkit-flex-direction: row
+  -webkit-flex-wrap: nowrap
+  z-index: 12
+  .it
+    background-color: #fff
+    position: relative
+    right: 0vw
+    height: 100vh
+    min-width: 100vw
+    display: inline-block
+    overflow-y: scroll
+    overflow-x: hidden
+    .title
+      padding: 10px 0px
+      background-color: #2196F3
+      color: white
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
+      text-align: center
+      display: flex
+      justify-content: space-between
+      i
+        font-size: 35px
+        padding-left: 10px
+        position: relative
+        top: 3px
+        cursor: pointer
+      p
+        font-size: 35px
+        padding-right: 15px
+        cursor: default
+    .schoolitem
+      box-sizing: border-box
+      padding: 20px
+      border-bottom: 1px solid #ddd
+      cursor: pointer
+      max-width: 500px
+      margin: 0px auto
+    .noschoolitem
+      box-sizing: border-box
+      padding: 20px
+      border-bottom: 1px solid #ddd
+      color: rgba(0, 0, 0, 0.5)
+      cursor: not-allowed
+      max-width: 500px
+      margin: 0px auto
+      &::after
+        content: " (rooster werkt niet)"
+    *
+      -webkit-touch-callout: none
+      -webkit-user-select: none
+      -khtml-user-select: none
+      -moz-user-select: none
+      -ms-user-select: none
+      user-select: none

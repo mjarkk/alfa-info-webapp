@@ -2,37 +2,17 @@ $(document).ready(function(){
   var outputElement = document.getElementById('output');
   var btnSave = document.getElementById('btnSave');
   var deferredPrompt;
-  navigator.serviceWorker.register('sw.js', { scope: './' })
-    .then(function(r) {
-      console.log('registered service worker');
-    })
-    .catch(function(whut) {
-      console.error('uh oh... ');
-      console.error(whut);
+
+
+  if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('./sw.js').then(function(registration) {
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }).catch(function(err) {
+      console.log('ServiceWorker registration failed: ', err);
     });
-  window.addEventListener('beforeinstallprompt', function(e) {
-    console.log('beforeinstallprompt Event fired');
-    e.preventDefault();
-    btnSave.removeAttribute('disabled');
-    deferredPrompt = e;
-    return false;
   });
-  btnSave.addEventListener('click', function() {
-    if (deferredPrompt !== undefined) {
-      deferredPrompt.prompt();
-      outputElement.textContent = 'Deferred Prompt shown';
-      deferredPrompt.userChoice.then(function(choiceResult) {
-        console.log(choiceResult.outcome);
-        if (choiceResult.outcome == 'dismissed') {
-          console.log('User cancelled homescreen install');
-        }
-        else {
-          console.log('User added to homescreen');
-        }
-        deferredPrompt = null;
-      });
-    }
-  });
+}
 
   var schoolweekcache = {
     monday: [],
@@ -350,15 +330,29 @@ function gettimetable() {
 
   var proxylink = settings.TimeTableProxy;
 
-  $.get(proxylink, {url: timetableurl}, function(data){
-    timetable = data.replace(/(\r\n|\n|\r)/gm,"");
-    if (timetable == "" || timetable == undefined) {
-      console.log({timetable: false});
-    } else {
-      rawhtmltojson();
-      console.log({timetable: true});
-    }
-  });
+  if (settings.webapi == false || settings.webapi == undefined) {
+    $.get(proxylink, {url: timetableurl}, function(data){
+      // console.log(data);
+      timetable = data.replace(/(\r\n|\n|\r)/gm,"");
+      if (timetable == "" || timetable == undefined) {
+        console.log({timetable: false});
+      } else {
+        rawhtmltojson();
+        console.log({timetable: true});
+      }
+    });
+  } else {
+    $.get(proxylink + "/rawhtml/", {url: timetableurl}, function(data){
+      // console.log(data);
+      timetable = data.replace(/(\r\n|\n|\r)/gm,"");
+      if (timetable == "" || timetable == undefined) {
+        console.log({timetable: false});
+      } else {
+        rawhtmltojson();
+        console.log({timetable: true});
+      }
+    });
+  }
   function isNumber(n) { return /^-?[\d.]+(?:e-?\d+)?$/.test(n); };
   function rawhtmltojson() {
     if (timetable.search(/<div class="Les"/i) != -1) {
@@ -696,8 +690,111 @@ closemorelinks = function() {
     easing: "easeInQuint"});
 }
 
-// console.log($(".links").height() + 12 + "px");
 var HeightOpenMenu = $(".links").height() + 2;
 $('.openlinks').css("height", HeightOpenMenu + "px");
 $('.openlinks').css("top", "-" + HeightOpenMenu + "px");
+
+var schoolJSONdata = {};
+
+if (settings.webapi == false || settings.webapi == undefined) {
+  console.log("seems like you don't have the latest update... download: https://github.com/mjarkk/alfa-info-webapp");
+} else {
+  $(".con .save-timetable-url").wrap("<div class='savetimetableurlwrapper'></div>");
+  setTimeout(function () {
+    $(".savetimetableurlwrapper").append("<button type=\"button\" class=\"save-timetable-url-new\" onclick=\"backschoolselect(0)\">New: selecteer uit lijst</button>");
+  }, 10);
+  $.getJSON(settings.TimeTableProxy + "/s", function(data){
+    schoolJSONdata = data;
+    var schoollist = "<div class=\"title\"><i class=\"material-icons\" onclick=\"backschoolselect('exit')\">arrow_back</i><p>School</p></div>";
+    var NOschoollist = "";
+    for (var i = 0; i < data.list.length; i++) {
+      var listitem = i;
+      if (data.list[i].status) {
+        schoollist += "<div class=\"schoolitem\" onclick=\"openschoolitem(" + listitem + ")\">" + data.list[i].name + "</div>";
+      } else {
+        NOschoollist += "<div class=\"noschoolitem\"\">" + data.list[i].name + "</div>";
+      }
+    }
+    $(".select-timetable .school").html(schoollist + NOschoollist);
+  });
+}
+
+openschoolitem = function(withone) {
+  var schoollist = "<div class=\"title\"><i class=\"material-icons\" onclick=\"backschoolselect(0)\">arrow_back</i><p>Locatie</p></div>";
+  for (var i = 0; i < schoolJSONdata.list[withone].schools.length; i++) {
+    schoollist += "<div class=\"schoolitem\" onclick=\"openschoolclasses('" + schoolJSONdata.list[withone].schools[i].api + "')\">" + schoolJSONdata.list[withone].schools[i].location + "</div>";
+  }
+  $(".select-timetable .location").html(schoollist);
+  $('.select-timetable .it').velocity({
+    right: "100vw"
+  }, {
+    duration: 500,
+    easing: "easeInOutCubic"});
+}
+
+openschoolclasses = function(withone) {
+  $('.select-timetable .it').velocity({
+    right: "200vw"
+  }, {
+    duration: 500,
+    easing: "easeInOutCubic"});
+  $.getJSON(settings.TimeTableProxy + withone, function(data){
+    var schoollist = "<div class=\"title\"><i class=\"material-icons\" onclick=\"backschoolselect(-100)\">arrow_back</i><p>Studiegroep</p></div>";
+    var list = data.list.studentgroep;
+    for (var i = 0; i < list.length; i++) {
+      schoollist += "<div class=\"schoolitem\" onclick=\"savetimetable('" + list[i].url + "')\">" + list[i].name + "</div>";
+    }
+    $(".select-timetable .class").html(schoollist);
+  });
+}
+
+savetimetable = function (url) {
+  var dataurll = url;
+  Lockr.set('ICT-ALFA-settings-url-' + window.location.hostname, dataurll);
+  timetableurl = Lockr.get('ICT-ALFA-settings-url-' + window.location.hostname);
+  if (timetableurl == dataurll) {
+    gettimetable();
+    opentoast(".url-saved");
+    setTimeout(function () {
+      location.reload();
+    }, 600);
+  } else {
+    opentoast(".url-saved-fail");
+  }
+  backschoolselect("exit");
+}
+
+backschoolselect = function (amount) {
+  if (amount == 0) {
+    $('.select-timetable .it').velocity({
+      right: "0vw"
+    }, {
+      duration: 500,
+      easing: "easeInOutCubic"});
+    $('.select-timetable').velocity({
+      left: "0vw"
+    }, {
+      duration: 500,
+      easing: "easeInOutCubic"});
+  } else if (amount == -100) {
+    $('.select-timetable .it').velocity({
+      right: "100vw"
+    }, {
+      duration: 500,
+      easing: "easeInOutCubic"});
+  } else if (amount == 'exit') {
+    $('.select-timetable .it').velocity({
+      right: "0vw"
+    }, {
+      duration: 500,
+      easing: "easeInOutCubic"});
+    $('.select-timetable').velocity({
+      left: "100vw"
+    }, {
+      duration: 500,
+      easing: "easeInOutCubic"});
+  }
+
+}
+
 });
