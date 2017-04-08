@@ -4,7 +4,7 @@ var settings = {
   "SiteDir": "/",
   "SiteTitle": "ICT-ALFA app",
   "webapi": true,
-  "TimeTableProxy": "https://school.mkopenga.com:5055", 
+  "TimeTableProxy": "https://your.site.com:5055", 
   "RoosterServiceLink": "https://roosters.xedule.nl/Attendee/ScheduleCurrent/14488?Code=B-ITM3-2a&attId=1&OreId=34",
   "links": [
     {
