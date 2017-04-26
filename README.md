@@ -4,7 +4,7 @@
 This is an webb app makes it easy to display roosters.xedule.nl and some alfa school links.
 
 Tecnical:  
-This app has a service worker built-in, a manifest to enable add to home screen, material design ui, webp support and a view little tings more!
+This app has a service worker built-in, a manifest to enable add to home screen, material design ui, webp support and a view little tings more! [lighthouse: 99/100](https://htmlpreview.github.io/?https://github.com/mjarkk/alfa-info-webapp/blob/master/lighthouse/test2.html)  
 
 ![screenshot](http://i.imgur.com/7ZhvQQE.png)
 
