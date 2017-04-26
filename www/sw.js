@@ -30,8 +30,8 @@ var urlsToCache = [
 ];
 
 for (var i = 0; i < settings.links.length; i++) {
-  urlsToCache.push(settings.links[i].icon + ".webp");
-  urlsToCache.push(settings.links[i].icon + ".png");
+  urlsToCache.push(sitedir + "icons/" + settings.links[i].icon + ".webp");
+  urlsToCache.push(sitedir + "icons/" + settings.links[i].icon + ".png");
 }
 
 self.addEventListener('install', function(event) {
