@@ -2,6 +2,7 @@
   "short_name": "school",
   "name": "Alfa School app",
   "background_color": "#fff",
+  "theme_color": "#3E2723",
   "icons": [
     {
       "src": "/icons/96.png",
