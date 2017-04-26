@@ -17,6 +17,9 @@ var urlsToCache = [
   sitedir + 'icons/96.png',
   sitedir + 'icons/144.png',
   sitedir + 'icons/192.png',
+  sitedir + 'icons/96.webp',
+  sitedir + 'icons/144.webp',
+  sitedir + 'icons/192.webp',
   sitedir + 'iconfont/material-icons.css',
   sitedir + 'iconfont/MaterialIcons-Regular.eot',
   sitedir + 'iconfont/MaterialIcons-Regular.ijmap',
@@ -25,6 +28,11 @@ var urlsToCache = [
   sitedir + 'iconfont/MaterialIcons-Regular.woff',
   sitedir + 'iconfont/MaterialIcons-Regular.woff2'
 ];
+
+for (var i = 0; i < settings.links.length; i++) {
+  urlsToCache.push(settings.links[i].icon + ".webp");
+  urlsToCache.push(settings.links[i].icon + ".png");
+}
 
 self.addEventListener('install', function(event) {
   event.waitUntil(
