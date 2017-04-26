@@ -1,4 +1,20 @@
 $(document).ready(function(){
+
+  function hasWebP() {
+    var rv = $.Deferred();
+    var img = new Image();
+    img.onload = function() { rv.resolve(); };
+    img.onerror = function() { rv.reject(); };
+    img.src = './icons/testimg.webp';
+    return rv.promise();
+  }
+
+  hasWebP().then(function() {
+    console.log("webp support");
+  }, function() {
+    console.log("no webp support");
+  });
+
   var outputElement = document.getElementById('output');
   var btnSave = document.getElementById('btnSave');
   var deferredPrompt;
@@ -455,11 +471,19 @@ $(".open-complete-timetable").click(function() {
 
 $(".site-title h1").text(settings.SiteTitle);
 
-var homelinks = "";
-for (var i = 0; i < settings.links.length; i++) {
-  homelinks = homelinks + "<a href=\"" + settings.links[i].link + "\" class='link-item'><div class='icon-holder'><div class='icon' style=\"background-image: url('icons/" + settings.links[i].icon + "')\"></div></div><div class='texts'><div class='title-item'>" + settings.links[i].name + "</div><div class='description-item'>" + settings.links[i].description + "</div></div></div></a>";
-}
-$(".links .link-items").html(homelinks);
+hasWebP().then(function() {
+  var homelinks = "";
+  for (var i = 0; i < settings.links.length; i++) {
+    homelinks = homelinks + "<a href=\"" + settings.links[i].link + "\" class='link-item'><div class='icon-holder'><div class='icon' style=\"background-image: url('icons/" + settings.links[i].icon + ".webp')\"></div></div><div class='texts'><div class='title-item'>" + settings.links[i].name + "</div><div class='description-item'>" + settings.links[i].description + "</div></div></div></a>";
+  }
+  $(".links .link-items").html(homelinks);
+}, function() {
+  var homelinks = "";
+  for (var i = 0; i < settings.links.length; i++) {
+    homelinks = homelinks + "<a href=\"" + settings.links[i].link + "\" class='link-item'><div class='icon-holder'><div class='icon' style=\"background-image: url('icons/" + settings.links[i].icon + ".png')\"></div></div><div class='texts'><div class='title-item'>" + settings.links[i].name + "</div><div class='description-item'>" + settings.links[i].description + "</div></div></div></a>";
+  }
+  $(".links .link-items").html(homelinks);
+});
 
 var moresubjectscurrent = "week";
 
@@ -699,11 +723,11 @@ var schoolJSONdata = {};
 if (settings.webapi == false || settings.webapi == undefined) {
   console.log("seems like you don't have the latest update... download: https://github.com/mjarkk/alfa-info-webapp");
 } else {
-  $(".con .save-timetable-url").wrap("<div class='savetimetableurlwrapper'></div>");
-  setTimeout(function () {
-    $(".savetimetableurlwrapper").append("<button type=\"button\" class=\"save-timetable-url-new\" onclick=\"backschoolselect(0)\">New: selecteer uit lijst</button>");
-  }, 10);
   $.getJSON(settings.TimeTableProxy + "/s", function(data){
+    $(".con .save-timetable-url").wrap("<div class='savetimetableurlwrapper'></div>");
+    setTimeout(function () {
+      $(".savetimetableurlwrapper").append("<button type=\"button\" class=\"save-timetable-url-new\" onclick=\"backschoolselect(0)\">New: selecteer uit lijst</button>");
+    }, 10);
     schoolJSONdata = data;
     var schoollist = "<div class=\"title\"><i class=\"material-icons\" onclick=\"backschoolselect('exit')\">arrow_back</i><p>School</p></div>";
     var NOschoollist = "";
