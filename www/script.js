@@ -334,7 +334,6 @@ function setcurrentsubjects(when,subject,place,time,teacher) {
 function pushtotimetable(day, subject) {
   calcminuts = 100 / 60 * subject.time.MinutesStart;
   calcminutsend = onehoure / 60 * subject.time.MinutesEnd;
-  // console.log(subject.time.MinutesEnd);
   subjectsize = calcminutsend + ((subject.time.HourseEnd - subject.time.HourseStart) * onehoure);
   $("." + day + " .h" + subject.time.HourseStart).html("<div style=\"top:" + calcminuts + "%; min-height:" + subjectsize + "px\" class='subject-item'><p class='a'>" + subject.subject + "</p><p class='b'>" + subject.place + "</p></div>");
 }
@@ -348,7 +347,6 @@ function gettimetable() {
 
   if (settings.webapi == false || settings.webapi == undefined) {
     $.get(proxylink, {url: timetableurl}, function(data){
-      // console.log(data);
       timetable = data.replace(/(\r\n|\n|\r)/gm,"");
       if (timetable == "" || timetable == undefined) {
         console.log({timetable: false});
@@ -359,7 +357,6 @@ function gettimetable() {
     });
   } else {
     $.get(proxylink + "/rawhtml/", {url: timetableurl}, function(data){
-      // console.log(data);
       timetable = data.replace(/(\r\n|\n|\r)/gm,"");
       if (timetable == "" || timetable == undefined) {
         console.log({timetable: false});
@@ -477,12 +474,18 @@ hasWebP().then(function() {
     homelinks = homelinks + "<a href=\"" + settings.links[i].link + "\" class='link-item'><div class='icon-holder'><div class='icon' style=\"background-image: url('icons/" + settings.links[i].icon + ".webp')\"></div></div><div class='texts'><div class='title-item'>" + settings.links[i].name + "</div><div class='description-item'>" + settings.links[i].description + "</div></div></div></a>";
   }
   $(".links .link-items").html(homelinks);
+  var HeightOpenMenu = $(".links.md-cart").height() + 2;
+  $('.openlinks').css("height", HeightOpenMenu + "px");
+  $('.openlinks').css("top", "-" + HeightOpenMenu + "px");
 }, function() {
   var homelinks = "";
   for (var i = 0; i < settings.links.length; i++) {
     homelinks = homelinks + "<a href=\"" + settings.links[i].link + "\" class='link-item'><div class='icon-holder'><div class='icon' style=\"background-image: url('icons/" + settings.links[i].icon + ".png')\"></div></div><div class='texts'><div class='title-item'>" + settings.links[i].name + "</div><div class='description-item'>" + settings.links[i].description + "</div></div></div></a>";
   }
   $(".links .link-items").html(homelinks);
+  var HeightOpenMenu = $(".links.md-cart").height() + 2;
+  $('.openlinks').css("height", HeightOpenMenu + "px");
+  $('.openlinks').css("top", "-" + HeightOpenMenu + "px");
 });
 
 var moresubjectscurrent = "week";
@@ -713,10 +716,6 @@ closemorelinks = function() {
     duration: 500,
     easing: "easeInQuint"});
 }
-
-var HeightOpenMenu = $(".links").height() + 2;
-$('.openlinks').css("height", HeightOpenMenu + "px");
-$('.openlinks').css("top", "-" + HeightOpenMenu + "px");
 
 var schoolJSONdata = {};
 

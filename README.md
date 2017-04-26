@@ -14,7 +14,7 @@ This app has a service worker built-in, a manifest to enable add to home screen,
 [lockr](https://github.com/tsironis/lockr)  
 [Service Worker](https://developers.google.com/web/fundamentals/getting-started/primers/service-workers)  
 [WebP](https://developers.google.com/speed/webp/)
-  
+
 ### how to install  
 
 ! this web app requires https !  
@@ -45,5 +45,4 @@ In manifest.json all:
 ```  
 
 ## Bugs:
-- serviceworker doesn't delete rooster site. that means after 100+ times opening the site your cache is 10mb
-- if no internet and you click on the select timetable out of list it will show a blank screen
+- none!
