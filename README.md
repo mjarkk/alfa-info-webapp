@@ -1,20 +1,19 @@
 # An unofficial Alfa web app.
 
 ### info
-this is an webb app makes it easy to display roosters.xedule.nl and some alfa school links.
+This is an webb app makes it easy to display roosters.xedule.nl and some alfa school links.
 
-Also the app has a service worker built-in, a manifest to enable add to home screen(not tested), material design ui and a view little thigs more!
+Tecnical:  
+This app has a service worker built-in, a manifest to enable add to home screen, material design ui, webp support and a view little tings more!
 
 ![screenshot](http://i.imgur.com/7ZhvQQE.png)
 
 ### Website made with:
 [xedule web api](https://github.com/mjarkk/node-xedule-web-api)  
-[velocity.js for all the animations](http://velocityjs.org/)  
-[jquery for the add elemets](https://jquery.com/)  
-[npm for the serverside request](https://www.npmjs.com/)  
-[lockr for the offline saved data](https://github.com/tsironis/lockr)  
-[letsencrypt for the https](https://letsencrypt.org/)  
-[Service Worker for the offline site](https://developers.google.com/web/fundamentals/getting-started/primers/service-workers)  
+[velocity.js](http://velocityjs.org/)  
+[lockr](https://github.com/tsironis/lockr)  
+[Service Worker](https://developers.google.com/web/fundamentals/getting-started/primers/service-workers)  
+[WebP](https://developers.google.com/speed/webp/)
   
 ### how to install  
 
