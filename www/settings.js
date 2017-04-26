@@ -9,25 +9,25 @@ var settings = {
   "links": [
     {
       "name": "Moodle",
-      "icon": "moodle.png",
+      "icon": "moodle",
       "description": "Digitale Leeromgeving voor ICT-opleidingen (Moodle Learning Management System)",
       "link": "http://www.ict-alfa.nl/ict-gron/login/index.php"
     },
     {
       "name": "Rooster service",
-      "icon": "xedule.png",
+      "icon": "xedule",
       "description": "Rooster Service. Hierin kan je alle roosters van alle klassen, lokalen en leraren bekijken.",
       "link": "https://roosters.xedule.nl/Attendee/ScheduleCurrent/14488?Code=B-ITM3-2a&attId=1&OreId=34"
     },
     {
       "name": "Actie",
-      "icon": "alfa-logo1.png",
+      "icon": "alfa-logo1",
       "description": "Actie (portal) van het Alfa College.",
       "link": "https://actie.alfa-college.nl/CookieAuth.dll?GetLogon?curl=Z2F&reason=0&formdir=2"
     },
     {
       "name": "School Webmail",
-      "icon": "email-icon.png",
+      "icon": "email-icon",
       "description": "Hier kan je mensen vinden om mee te daten",
       "link": "https://login.microsoftonline.com/"
     }
