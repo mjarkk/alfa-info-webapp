@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ICT-ALFA app</title>
+    <link href="iconfont/material-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
+    <link rel="manifest" href="./manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="#3E2723">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="icons/favicon/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="icons/favicon/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="icons/favicon/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="icons/favicon/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="icons/favicon/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="icons/favicon/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="icons/favicon/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="icons/favicon/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="icons/favicon/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="icons/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="icons/favicon/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="icons/favicon/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/webp" href="icons/favicon/favicon-128.webp" sizes="128x128" />
+    <link rel="icon" type="image/png" href="icons/favicon/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="&nbsp;"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="icons/favicon/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="icons/favicon/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="icons/favicon/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="icons/favicon/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="icons/favicon/mstile-310x310.png" />
+    <meta property="og:title" content="unofficial Alfa webapp!"/>
+    <meta property="og:description" content="Deze site laat je jou rooster zien met handige linkjes die je vaak gebruikt in het Alfa College."/>
+  </head>
+  <body>
+    <script src="script.js"></script>
+    <script src="settings.js"></script>
+    <div class="settings-menu">
+      <div class="con">
+        <h1>Settings <i class="material-icons app-settings-close">close</i></h1>
+        <h2><i class="material-icons">link</i> Verander rooster url</h2>
+        <div class="input">
+          <input type="text" class="timetable-url">
+        </div>
+        <button type="button" class="savabtn save-timetable-url">Save</button>
+        <p class="note">na het opslaan 2 keer pagina opniew laden bugsss :(</p>
+      </div>
+    </div>
+    <div class="select-timetable">
+      <div class="school it">
+
+      </div>
+      <div class="location it">
+
+      </div>
+      <div class="class it">
+        <div class="title"><i class="material-icons" onclick="backschoolselect(-100)">arrow_back</i><p>Studiegroep</p></div>
+        <div class="schoolitem">loading...</div>
+      </div>
+    </div>
+    <div class="toasts">
+      <div class="nosettings">
+        Sorry settings werken nog niet
+      </div>
+      <div class="url-saved-fail">
+        error
+      </div>
+      <div class="url-saved">
+        Settings opgeslagen
+      </div>
+    </div>
+    <div class="appinfo">
+      <div class="con">
+        <i class="material-icons app-info-close">close</i>
+        <h1>Onofficiële alfa web app!</h1>
+        <p>
+           Deze site is gemaakt voor het bekijken van je <a href="https://roosters.xedule.nl/">ROOSTER</a>.
+           Dat is niet het meeste speciale aan deze website, wat leuker is dat deze site <a href="https://www.youtube.com/watch?v=3tb-1MWg44Y">OFFLINE</a> werkt!
+           En ja deze site kan je ook zelf <a href="https://github.com/mjarkk/alfa-info-webapp">INSTALLEREN</a> op je server!
+        </p>
+      </div>
+    </div>
+    <div class="slideout-menu">
+      <div class="overlay">
+
+      </div>
+      <div class="con">
+        <div class="menu-close-holder">
+          <i class="material-icons menu-close">close</i>
+        </div>
+        <p class="link menu-about">Over</p>
+        <p class="link menu-settings">Instellingen</p>
+        <a href="https://goo.gl/forms/fEbpdYalrUVNFs072" class="link menu-feedback">feedback</a>
+      </div>
+    </div>
+    <div class="menu">
+      <i class="material-icons open-menu">menu</i>
+      <i class="material-icons settings">more_vert</i>
+    </div>
+    <div class="itmes">
+      <div class="site-title">
+        <h1></h1>
+      </div>
+      <div class="nextlesson md-cart">
+        <div class="title"><i class="material-icons">access_time</i>volgende les</div>
+        <div class="rooster-holder">
+          <div class="next-lesson">
+            <div class="con">
+              <div class="last">
+                <div class="text"><div class="dot"></div>Nu:</div>
+                <div class="subject"></div>
+              </div>
+              <div class="now">
+                <div class="text"><div class="dot"></div>Volgende les:</div>
+                <div class="subject"></div>
+              </div>
+              <div class="next">
+                <div class="text"><div class="dot"></div>Daarna:</div>
+                <div class="subject"></div>
+              </div>
+            </div>
+          </div>
+          <div class="complete-timetable">
+            <div class="open-complete-timetable-holder">
+              <i class="material-icons open-complete-timetable">add</i>
+              <div class="timetable-full">
+                <div class="menu-timetable">
+                  <p class="today">vandaag</p><p class="week isselected">week</p>
+                </div>
+                <div class="content">
+                  <div class="timeline">
+                    <div class="day-houre day-name"></div>
+                    <div class="day-houre h9">9h</div>
+                    <div class="day-houre h10">10h</div>
+                    <div class="day-houre h11">11h</div>
+                    <div class="day-houre h12">12h</div>
+                    <div class="day-houre h13">13h</div>
+                    <div class="day-houre h14">14h</div>
+                    <div class="day-houre h15">15h</div>
+                    <div class="day-houre h16">16h</div>
+                  </div>
+                  <div class="monday">
+                    <div class="day-houre day-name">MA</div>
+                    <div class="day-houre h9"></div>
+                    <div class="day-houre h10"></div>
+                    <div class="day-houre h11"></div>
+                    <div class="day-houre h12"></div>
+                    <div class="day-houre h13"></div>
+                    <div class="day-houre h14"></div>
+                    <div class="day-houre h15"></div>
+                    <div class="day-houre h16"></div>
+                  </div>
+                  <div class="tuesday">
+                    <div class="day-houre day-name">DI</div>
+                    <div class="day-houre h9"></div>
+                    <div class="day-houre h10"></div>
+                    <div class="day-houre h11"></div>
+                    <div class="day-houre h12"></div>
+                    <div class="day-houre h13"></div>
+                    <div class="day-houre h14"></div>
+                    <div class="day-houre h15"></div>
+                    <div class="day-houre h16"></div>
+                  </div>
+                  <div class="wednesday">
+                    <div class="day-houre day-name">WO</div>
+                    <div class="day-houre h9"></div>
+                    <div class="day-houre h10"></div>
+                    <div class="day-houre h11"></div>
+                    <div class="day-houre h12"></div>
+                    <div class="day-houre h13"></div>
+                    <div class="day-houre h14"></div>
+                    <div class="day-houre h15"></div>
+                    <div class="day-houre h16"></div>
+                  </div>
+                  <div class="thursday">
+                    <div class="day-houre day-name">DO</div>
+                    <div class="day-houre h9"></div>
+                    <div class="day-houre h10"></div>
+                    <div class="day-houre h11"></div>
+                    <div class="day-houre h12"></div>
+                    <div class="day-houre h13"></div>
+                    <div class="day-houre h14"></div>
+                    <div class="day-houre h15"></div>
+                    <div class="day-houre h16"></div>
+                  </div>
+                  <div class="friday">
+                    <div class="day-houre day-name">VR</div>
+                    <div class="day-houre h9"></div>
+                    <div class="day-houre h10"></div>
+                    <div class="day-houre h11"></div>
+                    <div class="day-houre h12"></div>
+                    <div class="day-houre h13"></div>
+                    <div class="day-houre h14"></div>
+                    <div class="day-houre h15"></div>
+                    <div class="day-houre h16"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="links md-cart">
+        <div class="title"><i class="material-icons">link</i>links</div>
+        <div class="link-items">
+
+        </div>
+        <div class="more-links"></div>
+        <div class="opelinks-con">
+          <div class="openlinks">
+            <div class="title">
+
+            </div>
+            <div class="links">
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="addtohome md-cart">
+        <div class="title"><i class="material-icons">add</i>Toevoegen op homescreen (experimental...)</div>
+        <button type="button" name="addtohome" class="md-btn addtohome-btn" id="btnSave">Toevoegen</button>
+      </div>
+      <div class="credit">
+        <a href="https://github.com/mjarkk/alfa-info-webapp">unofficial Alfa web app</a>
+      </div>
+    </div>
+  </body>
+</html>
